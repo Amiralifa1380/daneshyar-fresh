@@ -83,7 +83,7 @@ check('android.permission.INTERNET' not in permissions, 'no INTERNET permission'
 check(not re.search(r'HttpURLConnection|Socket\(|URL\([^)]*\)\.openConnection', '\n'.join(p.read_text() for p in SRC.glob('*.java'))), 'no network calls or remote resources in Java sources')
 
 gradle = (ROOT/'app/build.gradle').read_text()
-check("applicationId 'ir.daneshyar.offline'" in gradle and 'versionCode 5' in gradle, 'update keeps package ID and increments version')
+check("applicationId 'ir.daneshyar.offline'" in gradle and 'versionCode 6' in gradle, 'update keeps package ID and increments version')
 check('minSdk 26' in gradle, 'update keeps Android 8 support')
 check('debuggable false' in gradle and 'ANDROID_SIGNING_FILE' in gradle, 'release disables debugging and uses external signing key')
 check('super(c, databaseName, null, 2)' in (SRC/'Store.java').read_text() and 'if(old==1 && next==2)' in (SRC/'Store.java').read_text(), 'database version 2 provides version 1 migration')

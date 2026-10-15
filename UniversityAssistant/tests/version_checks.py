@@ -3,8 +3,8 @@ import importlib.util, tempfile, subprocess, os, json
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('version',root/'verify-version.py'); mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
-mod.require_version('1.2.2',5)
-for version,code in [('1.1',2),('1.2.1',4),('1.2.2',4)]:
+mod.require_version('1.2.3',6)
+for version,code in [('1.1',2),('1.2.1',4),('1.2.3',4)]:
     try: mod.require_version(version,code)
     except ValueError: pass
     else: raise AssertionError('stale version accepted')
@@ -22,7 +22,7 @@ print({'version-name':os.environ['MOCK_VERSION'], 'version-code':os.environ['MOC
     result=subprocess.run(args,env=env,capture_output=True,text=True)
     assert result.returncode==1 and 'STALE BUILD' in result.stderr
     assert not (tmp/'dist/build-info.json').exists()
-    env.update(MOCK_VERSION='1.2.2',MOCK_CODE='5')
+    env.update(MOCK_VERSION='1.2.3',MOCK_CODE='6')
     subprocess.run(args,env=env,check=True)
-    info=json.loads((tmp/'dist/build-info.json').read_text()); assert info['versionName']=='1.2.2' and len(info['sha256'])==64
+    info=json.loads((tmp/'dist/build-info.json').read_text()); assert info['versionName']=='1.2.3' and len(info['sha256'])==64
 print('PASS: version mismatches rejected; mocked APK gate and provenance verified (not an APK build)')

@@ -1,6 +1,6 @@
-# دانش‌یار ۱.۲.۲ — نویسنده: امیرحسین فلاحتی
+# دانش‌یار ۱.۲.۳ — نویسنده: امیرحسین فلاحتی
 
-اپلیکیشن فارسی، بومی و آفلاین اندروید (Android 8/API 26 به بالا) با SQLite محلی و Material 3. شناسهٔ برنامه ir.daneshyar.offline حفظ شده، versionCode=5 است و دیتابیس از نسخهٔ ۱ به ۲ با اضافه‌کردن جدول پرونده‌های درسی و بدون حذف رکوردهای قبلی مهاجرت می‌کند.
+اپلیکیشن فارسی، بومی و آفلاین اندروید (Android 8/API 26 به بالا) با SQLite محلی و Material 3. شناسهٔ برنامه ir.daneshyar.offline حفظ شده، versionCode=6 است و دیتابیس از نسخهٔ ۱ به ۲ با اضافه‌کردن جدول پرونده‌های درسی و بدون حذف رکوردهای قبلی مهاجرت می‌کند.
 
 ## امکانات این آپدیت
 
@@ -21,9 +21,9 @@
 ۱. در GitHub یک مخزن خالی با نام daneshyar-fresh بسازید.
 ۲. بسته Daneshyar-Fresh-Repository.zip را روی کامپیوتر استخراج کنید. داخل پوشه daneshyar-fresh، پوشه UniversityAssistant و README.md را با Add file > Upload files آپلود و Commit کنید؛ خود ZIP یا پوشه بیرونی daneshyar-fresh را آپلود نکنید.
 ۳. با Add file > Create new file مسیر .github/workflows/android.yml را بسازید. تمام متن فایل جداگانه daneshyar-fresh-android.yml را در آن قرار دهید و Commit کنید. اگر پوشه .github همراه سورس قبلاً آپلود شده است، همین فایل را ویرایش کنید.
-۴. Actions > Daneshyar Fresh 1.2.2 - Build and test APK > Run workflow را با variant=debug اجرا کنید.
-۵. در Summary همان اجرا، خروجی Daneshyar-Fresh-APK-v1.2.2-debug-run-شماره را دانلود و استخراج کنید. فایل نصب Daneshyar-1.2.2-debug.apk است؛ build-info.json نسخه واقعی، هش و شماره اجرا را ثبت می‌کند.
-۶. در صورت شکست، گزارش Daneshyar-Fresh-Reports-v1.2.2-run-همان شماره را ارسال کنید. وجود APK به تنهایی به معنی عبور تست‌ها نیست.
+۴. Actions > Daneshyar Fresh 1.2.3 - Build and test APK > Run workflow را با variant=debug اجرا کنید.
+۵. در Summary همان اجرا، خروجی Daneshyar-Fresh-APK-v1.2.3-debug-run-شماره را دانلود و استخراج کنید. فایل نصب Daneshyar-1.2.3-debug.apk است؛ build-info.json نسخه واقعی، هش و شماره اجرا را ثبت می‌کند.
+۶. در صورت شکست، گزارش Daneshyar-Fresh-Reports-v1.2.3-run-همان شماره را ارسال کنید. وجود APK به تنهایی به معنی عبور تست‌ها نیست.
 
 در ریشه مخزن باید UniversityAssistant/app/build.gradle و .github/workflows/android.yml موجود باشند. فایل‌های قبلی مخزن قدیمی را اینجا کپی نکنید.
 
@@ -97,6 +97,6 @@ Gradle Wrapper باینری داخل بسته نیست؛ با Gradle نصب‌ش
 
 روی شبیه‌ساز یا گوشی آزمایشی اجرا کنید؛ آزمون دیتابیس و فایل در فضاهای جداگانه‌اند، ولی برای آزمون پخش، سرویس واقعی برنامه موقتاً شروع و متوقف می‌شود. تست دستی روی گوشی برای پخش واقعی، اعلان پس‌زمینه، خواب دستگاه، تم‌ها، انتخابگرها، برنامهٔ نمایش PDF و نصب آپدیت با کلید ثابت لازم است.
 
-## اصلاح ۱.۲.۲
+## اصلاح ۱.۲.۳
 
 کرش راه‌اندازی از فراخوانی Window.getInsetsController قبل از ساخت DecorView بود. تنظیم نوارها بعد از setContentView انجام و controller از View آماده خوانده می‌شود، با بررسی null و تلاش پس از اتصال پنجره. نام ZIP و workflow تغییر نکرده‌اند تا فقط جایگزینی ZIP کافی باشد. اصلاح در میزبان بررسی شده؛ نتیجهٔ اجرای مجدد آزمون اندروید هنوز دریافت نشده است.

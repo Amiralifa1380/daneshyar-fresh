@@ -55,5 +55,5 @@ fi
 python3 verify-version.py apk "$apk"
 echo 'APK signature, version and offline manifest checks passed.'
 
-cp "$apk" "dist/Daneshyar-1.2.2-$variant.apk"
-echo "Verified build artifact: dist/Daneshyar-1.2.2-$variant.apk (build type: $variant)"
+cp "$apk" "dist/Daneshyar-1.2.3-$variant.apk"
+echo "Verified build artifact: dist/Daneshyar-1.2.3-$variant.apk (build type: $variant)"

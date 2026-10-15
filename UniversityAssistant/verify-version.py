@@ -3,7 +3,7 @@
 import hashlib, json, os, re, subprocess, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent
-EXPECTED_NAME, EXPECTED_CODE = '1.2.2', '5'
+EXPECTED_NAME, EXPECTED_CODE = '1.2.3', '6'
 
 def require_version(name, code):
     if (name, str(code)) != (EXPECTED_NAME, EXPECTED_CODE):

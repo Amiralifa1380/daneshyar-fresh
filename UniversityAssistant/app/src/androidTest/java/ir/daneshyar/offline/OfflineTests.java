@@ -39,6 +39,7 @@ public final class OfflineTests extends Instrumentation {
     }
     @Override public void onStart() {
         Bundle result = new Bundle();
+        JSONObject originalAlarmPrefs=null;
         // Announce the suite before setup: startup failures must be visible as test failures.
         sendStatus(1, status());
         android.content.Context testContext = getTargetContext();
@@ -178,10 +179,20 @@ public final class OfflineTests extends Instrumentation {
                 check(containsText(activity.getWindow().getDecorView(), "نویسنده: امیرحسین فلاحتی"), "author attribution");
             }
             );
+            originalAlarmPrefs=AppPrefs.backup(testContext);
+            AppPrefs.get(testContext).edit().putString("audio_file","").putString("sound_uri","android.resource://ir.daneshyar.offline/0").putBoolean("loop",true).commit();
             check(AlarmService.start(testContext,"آزمون کنترل هشدار"),"foreground alarm service starts while app visible");
-            waitForIdleSync();Thread.sleep(600);
+            waitForIdleSync();
+            long deadline=android.os.SystemClock.elapsedRealtime()+10000;
+            while(!AlarmService.playbackStarted&&android.os.SystemClock.elapsedRealtime()<deadline)Thread.sleep(50);
+            check(AlarmService.playbackStarted,"alarm audio actually starts despite unavailable selected sound");
+            Thread.sleep(1800); // Beyond the 1.5-second bundled clip: looping must still be active.
+            check(AlarmService.playbackStarted,"alarm playback loops beyond one clip");
             check(AppPrefs.active(testContext),"alarm remains active pending explicit stop");
             AlarmService.stop(testContext);waitForIdleSync();
+            long stopDeadline=android.os.SystemClock.elapsedRealtime()+5000;
+            while(AlarmService.playbackStarted&&android.os.SystemClock.elapsedRealtime()<stopDeadline)Thread.sleep(50);
+            check(!AlarmService.playbackStarted,"explicit stop releases playback");
             check(!AppPrefs.active(testContext),"explicit stop clears active alarm");
             runOnMainSync(activity::finish);
             result.putString("stream", "PASS: " + checks + " on-device checks\n");
@@ -198,10 +209,11 @@ public final class OfflineTests extends Instrumentation {
         finally {
             try {
                 AlarmService.stop(testContext);
+                if(originalAlarmPrefs!=null)AppPrefs.restore(testContext,originalAlarmPrefs);
                 testContext.deleteDatabase(TEST_DB);
                 testContext.deleteDatabase("daneshyar-migration-test.db");
                 clearTree(new File(testContext.getCacheDir(),"offline-test-files"));
-            } catch (RuntimeException cleanupError) {
+            } catch (Exception cleanupError) {
                 android.util.Log.e("DaneshyarTests", "Test database cleanup failed", cleanupError);
             }
         }
