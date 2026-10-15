@@ -1,3 +1,35 @@
+name: Daneshyar Fresh 1.2.2 - Build and test APK
+on:
+  workflow_dispatch:
+    inputs:
+      variant:
+        description: 'debug = test build; release = requires signing secrets'
+        type: choice
+        default: debug
+        options: [debug, release]
+permissions:
+  contents: read
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify checked-out source
+        run: python3 UniversityAssistant/verify-version.py source
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Install Android build tools
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Restore private signing key
         env:
           SIGNING_DATA: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
