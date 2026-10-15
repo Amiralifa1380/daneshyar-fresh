@@ -1,0 +1,12 @@
+<resources>
+    <color name="brand_primary">#82D4D0</color>
+    <color name="brand_on_primary">#00373C</color>
+    <color name="brand_secondary">#B9C3FF</color>
+    <color name="app_surface">#172434</color>
+    <color name="surface_ink">#E6EEF5</color>
+    <color name="surface_muted">#B6C4D3</color>
+    <color name="surface_variant">#25364A</color>
+    <color name="app_background">#101B28</color>
+    <color name="primary_container">#17464D</color>
+    <color name="on_primary_container">#CDEFEA</color>
+</resources>

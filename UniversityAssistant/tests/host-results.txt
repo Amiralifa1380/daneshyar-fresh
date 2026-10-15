@@ -1,0 +1,40 @@
+PASS: 70 Java time/weekly-reminder/file-name assertions from actual source methods
+PASS: Java syntax parsed for 14 source files (no Android type checking)
+PASS: five tables from actual source schema
+PASS: grade and units persisted
+PASS: reject grade outside 0..20
+PASS: reject invalid credits
+PASS: reject invalid weekday
+PASS: reject reversed class times
+PASS: reject orphan course link
+PASS: reject invalid event kind
+PASS: SQLite restores previous data after transaction error
+PASS: teacher removal preserves course
+PASS: course removal cascades weekly sessions
+PASS: course removal preserves events
+PASS: parameter binding stores SQL-shaped input safely
+PASS: resources migration preserves existing courses
+PASS: per-course note persists
+PASS: reject orphan resource
+PASS: reject oversized file metadata
+PASS: course deletion cascades resources
+PASS: all Android resource XML parses
+PASS: API 27 navigation property excluded from API 26 defaults
+PASS: API 27 navigation property version-qualified
+PASS: no INTERNET permission
+PASS: no network calls or remote resources in Java sources
+PASS: update keeps package ID and increments version
+PASS: update keeps Android 8 support
+PASS: release disables debugging and uses external signing key
+PASS: database version 2 provides version 1 migration
+PASS: Material components are bundled dependencies
+PASS: author attribution included
+PASS: alarm service and exact scheduling permissions declared
+PASS: no broad storage permission
+PASS: shared looping alarm exposes explicit stop action
+PASS: date/time fields use non-typing selection
+PASS: dark theme resources provided
+PASS: ZIP backup bounded and file paths checked
+PASS: startup avoids Window controller before DecorView exists
+PASS: system bar configuration follows content creation
+PASS: 37 host schema/XML/security checks. Android build and device tests NOT executed.

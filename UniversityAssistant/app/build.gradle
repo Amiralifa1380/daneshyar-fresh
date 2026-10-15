@@ -1,0 +1,49 @@
+plugins { id 'com.android.application' }
+
+def signingPath = System.getenv('ANDROID_SIGNING_FILE')
+def signingPassword = System.getenv('ANDROID_SIGNING_PASSWORD')
+def signingAlias = System.getenv('ANDROID_SIGNING_ALIAS') ?: 'daneshyar'
+def keyPasswordValue = System.getenv('ANDROID_KEY_PASSWORD') ?: signingPassword
+
+android {
+    namespace 'ir.daneshyar.offline'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'ir.daneshyar.offline'
+        minSdk 26
+        targetSdk 35
+        versionCode 5
+        versionName '1.2.2'
+        testApplicationId 'ir.daneshyar.offline.test'
+        testInstrumentationRunner 'ir.daneshyar.offline.OfflineTests'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    signingConfigs {
+        if (signingPath && signingPassword) {
+            stable {
+                storeFile file(signingPath)
+                storePassword signingPassword
+                keyAlias signingAlias
+                keyPassword keyPasswordValue
+            }
+        }
+    }
+    buildTypes {
+        debug {
+            if (signingPath && signingPassword) signingConfig signingConfigs.stable
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            if (signingPath && signingPassword) signingConfig signingConfigs.stable
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+}

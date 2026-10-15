@@ -1,0 +1,7 @@
+<resources>
+    <!-- Dark navigation icons require Android 8.1/API 27 or later. -->
+    <style name="AppTheme" parent="AppThemeBase">
+        <item name="android:navigationBarColor">#FFFFFF</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>
