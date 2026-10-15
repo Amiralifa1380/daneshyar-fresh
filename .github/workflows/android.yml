@@ -1,4 +1,4 @@
-name: Daneshyar Fresh 1.2.2 - Build and test APK
+name: Daneshyar Fresh 1.2.3 - Build and test APK
 on:
   workflow_dispatch:
     inputs:
@@ -58,7 +58,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Daneshyar-Fresh-APK-v1.2.2-${{ inputs.variant }}-run-${{ github.run_number }}
+          name: Daneshyar-Fresh-APK-v1.2.3-${{ inputs.variant }}-run-${{ github.run_number }}
           path: |
             UniversityAssistant/dist/*.apk
             UniversityAssistant/dist/build-info.json
@@ -83,7 +83,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Daneshyar-Fresh-Reports-v1.2.2-run-${{ github.run_number }}
+          name: Daneshyar-Fresh-Reports-v1.2.3-run-${{ github.run_number }}
           path: |
             UniversityAssistant/app/build/reports/androidTests/
             UniversityAssistant/app/build/outputs/androidTest-results/
